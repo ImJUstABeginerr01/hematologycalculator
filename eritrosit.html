@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eritrosit Calculator</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #242424;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #3b3838;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ee9117;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            color: #ffb81f;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            text-align: center;
+            color: #333;
+        }
+
+        .result span {
+            font-weight: bold;
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Eritrosit Calculator</h1>
+        <form id="eritrositForm">
+            <label for="jumlahSel">Jumlah Sel Terhitung:</label>
+            <input type="number" id="jumlahSel" placeholder="Masukkan jumlah sel..." required>
+
+            <label for="faktorPengenceran">Faktor Pengenceran:</label>
+            <input type="number" id="faktorPengenceran" placeholder="Masukkan faktor pengenceran..." required>
+
+            <label for="jumlahKotak">Jumlah Kotak:</label>
+            <input type="number" id="jumlahKotak" placeholder="Masukkan jumlah kotak..." required>
+            
+            <label for="tipeKotak">Tipe Kotak:</label>
+            <select id="tipeKotak">
+                <option value="0.004">Kotak Sedang</option>
+                <option value="0.00025">Kotak Kecil</option>
+            </select>
+
+            <button type="button" onclick="hitungEritrosit()">Hitung</button>
+        </form>
+
+        <div id="result" class="result" style="display: none;">
+            <p>Jumlah eritrosit adalah <span id="jumlahEritrosit"></span> sel/µL darah.</p>
+            <p>Kesimpulan: <span id="kesimpulan"></span></p>
+        </div>
+    </div>
+
+    <script>
+        function hitungEritrosit() {
+            const jumlahSel = parseInt(document.getElementById('jumlahSel').value);
+            const faktorPengenceran = parseFloat(document.getElementById('faktorPengenceran').value);
+            const jumlahKotak = parseFloat(document.getElementById('jumlahKotak').value);
+            const tipeKotak = parseFloat(document.getElementById('tipeKotak').value);
+
+            if (isNaN(jumlahSel) || isNaN(faktorPengenceran)) {
+                alert('Harap masukkan nilai yang valid!');
+                return;
+            }
+            
+            const volumeKamarHitung = jumlahKotak * tipeKotak
+            const jumlahEritrosit = (jumlahSel / volumeKamarHitung) * faktorPengenceran;
+
+            document.getElementById('jumlahEritrosit').textContent = jumlahEritrosit.toFixed(0);
+
+            const nilaiRujukanMin = 4000000;
+            const nilaiRujukanMax = 5500000;
+            let kesimpulan = '';
+
+            if (jumlahEritrosit < nilaiRujukanMin) {
+                kesimpulan = 'Jumlah eritrosit di bawah normal (Anemia).';
+            } else if (jumlahEritrosit > nilaiRujukanMax) {
+                kesimpulan = 'Jumlah eritrosit di atas normal (Polisitemia).';
+            } else {
+                kesimpulan = 'Jumlah eritrosit normal.';
+            }
+
+            document.getElementById('kesimpulan').textContent = kesimpulan;
+            document.getElementById('result').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

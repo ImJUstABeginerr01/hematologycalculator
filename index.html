@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hematology Calculator</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Brick+Sans:wght@400;700&display=swap'); 
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #242424; /* Warna abu-abu */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            color: rgb(213, 213, 213);
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            font-family: 'Brick Sans', sans-serif;
+        }
+
+        .menu-button {
+            display: block;
+            width: 250px;
+            padding: 15px;
+            margin: 15px auto;
+            font-size: 1rem;
+            font-weight: bold;
+            color: rgb(255, 152, 42);
+            background-color: #4b3621; /* Warna cokelat */
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .menu-button:hover {
+            background-color: #3b2918; /* Warna cokelat gelap saat hover */
+            transform: translateY(-3px);
+        }
+
+        .menu-button:active {
+            transform: translateY(1px);
+        }
+
+        .contact-button {
+            margin-top: 20px;
+            background-color: #007BFF; /* Warna biru */
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            font-size: 1rem;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .contact-button:hover {
+            background-color: #0056b3; /* Biru lebih gelap saat hover */
+            transform: translateY(-3px);
+        }
+
+        .contact-button:active {
+            transform: translateY(1px);
+        }
+
+        p {
+            color: rgb(247, 241, 241);
+            font-size: 1rem;
+            margin-top: 20px;
+            line-height: 1.5;
+            color: #ffffff;
+            padding: 15px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .menu-button {
+                font-size: 0.9rem;
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .menu-button {
+                font-size: 0.8rem;
+                padding: 10px;
+            }
+
+            p {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hematology Calculator</h1>
+        <button class="menu-button" onclick="location.href='leukosit.html'">Leukosit Calculator</button>
+        <button class="menu-button" onclick="location.href='eritrosit.html'">Eritrosit Calculator</button>
+        <button class="menu-button" onclick="location.href='trombosit.html'">Trombosit Calculator</button>
+        <p>
+            hi pengguna yang terhormat, website ini dibuat oleh I Kadek Bagus Arya Wedha <br> harapannya dapat membantu pengguna dalam menghitung nilai-nilai komponen darah. <br> semoga website ini bermanfaat :> 
+        </p>
+    <button class="contact-button" onclick="location.href='https://wa.me/6283114476442'">Contact</button>
+    </div>
+</body>
+</html>
