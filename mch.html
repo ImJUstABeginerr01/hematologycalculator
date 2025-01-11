@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCH Calculator</title>
+    <link rel="icon" href="logo.ico" type="image/icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #242424;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #3b3838;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ee9117;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            color: #ffb81f;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            text-align: center;
+            color: #333;
+        }
+
+        .result span {
+            font-weight: bold;
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MCH Calculator</h1>
+        <form id="mchForm">
+            <label for="kadarHemoglobin">Kadar Hemoglobin:</label>
+            <input type="number" id="kadarHemoglobin" placeholder="Masukkan kadar hemoglobin..." required>
+
+            <label for="jumlahSelEritrosit">Jumlah sel eritrosit:</label>
+            <input type="number" id="jumlahSelEritrosit" placeholder="Contoh (5 atau 5,1)..." required>
+
+            <button type="button" onclick="hitungMCH()">Hitung</button>
+        </form>
+
+        <div id="result" class="result" style="display: none;">
+            <p>Hemoglobin korpuskuler rata-rata adalah <span id="bobotHemoglobin"></span> pg.</p>
+            <p>Kesimpulan: <span id="kesimpulan"></span></p>
+        </div>
+    </div>
+
+    <script>
+        function hitungMCH() {
+            const kadarHemoglobin = parseInt(document.getElementById('kadarHemoglobin').value);
+            const jumlahSelEritrosit = parseFloat(document.getElementById('jumlahSelEritrosit').value);
+
+            if (isNaN(kadarHemoglobin) || isNaN(jumlahSelEritrosit)) {
+                alert('Harap masukkan nilai yang valid!');
+                return;
+            }
+            
+            const bobotHemoglobin = (kadarHemoglobin / jumlahSelEritrosit) * 10;
+
+            document.getElementById('bobotHemoglobin').textContent = bobotHemoglobin.toFixed(0);
+
+            const nilaiRujukanMin = 28 ;
+            const nilaiRujukanMax = 34 ;
+            let kesimpulan = '';
+
+            if (bobotHemoglobin < nilaiRujukanMin) {
+                kesimpulan = 'Hipokrom.';
+            } else if (bobotHemoglobin > nilaiRujukanMax) {
+                kesimpulan = 'Hiperkrom.';
+            } else {
+                kesimpulan = 'Normokrom.';
+            }
+
+            document.getElementById('kesimpulan').textContent = kesimpulan;
+            document.getElementById('result').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

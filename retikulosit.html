@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retikulosit Calculator</title>
+    <link rel="icon" href="logo.ico" type="image/icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #242424;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #3b3838;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ee9117;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            color: #ffb81f;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            text-align: center;
+            color: #333;
+        }
+
+        .result span {
+            font-weight: bold;
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Retikulosit Calculator</h1>
+        <form id="retikulositForm">
+            <label for="jumlahSelRetikulosit">Jumlah Sel Retikulosit Terhitung:</label>
+            <input type="number" id="jumlahSelRetikulosit" placeholder="Masukkan jumlah sel retikulosit..." required>
+
+            <label for="jumlahSelEritrosit">Jumlah Sel Eritrosit Terhitung:</label>
+            <input type="number" id="jumlahSelEritrosit" placeholder="Masukkan jumlah sel eritrosit..." required>
+
+            <button type="button" onclick="hitungRetikulosit()">Hitung</button>
+        </form>
+
+        <div id="result" class="result" style="display: none;">
+            <p>Jumlah retikulosit adalah <span id="jumlahRetikulosit"></span> %.</p>
+            <p>Kesimpulan: <span id="kesimpulan"></span></p>
+        </div>
+    </div>
+
+    <script>
+        function hitungRetikulosit() {
+            const jumlahSelRetikulosit = parseInt(document.getElementById('jumlahSelRetikulosit').value);
+            const jumlahSelEritrosit = parseFloat(document.getElementById('jumlahSelEritrosit').value);
+
+            if (isNaN(jumlahSelRetikulosit) || isNaN(jumlahSelEritrosit)) {
+                alert('Harap masukkan nilai yang valid!');
+                return;
+            }
+            
+            const jumlahRetikulosit = (jumlahSelRetikulosit / jumlahSelEritrosit) * 100;
+
+            document.getElementById('jumlahRetikulosit').textContent = jumlahRetikulosit.toFixed(2);
+
+            const nilaiRujukanMin = 0.5;
+            const nilaiRujukanMax = 1.5;
+            let kesimpulan = '';
+
+            if (jumlahRetikulosit < nilaiRujukanMin) {
+                kesimpulan = 'Jumlah retikulost di bawah normal.';
+            } else if (jumlahRetikulosit > nilaiRujukanMax) {
+                kesimpulan = 'Jumlah retikulosit di atas normal.';
+            } else {
+                kesimpulan = 'Jumlah retikulosit normal.';
+            }
+
+            document.getElementById('kesimpulan').textContent = kesimpulan;
+            document.getElementById('result').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
