@@ -99,7 +99,7 @@
 
     <script>
         function hitungMCH() {
-            const kadarHemoglobin = parseInt(document.getElementById('kadarHemoglobin').value);
+            const kadarHemoglobin = parseFloat(document.getElementById('kadarHemoglobin').value);
             const jumlahSelEritrosit = parseFloat(document.getElementById('jumlahSelEritrosit').value);
 
             if (isNaN(kadarHemoglobin) || isNaN(jumlahSelEritrosit)) {
@@ -109,7 +109,7 @@
             
             const bobotHemoglobin = (kadarHemoglobin / jumlahSelEritrosit) * 10;
 
-            document.getElementById('bobotHemoglobin').textContent = bobotHemoglobin.toFixed(0);
+            document.getElementById('bobotHemoglobin').textContent = bobotHemoglobin.toFixed(1);
 
             const nilaiRujukanMin = 28 ;
             const nilaiRujukanMax = 34 ;
