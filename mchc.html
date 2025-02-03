@@ -99,7 +99,7 @@
 
     <script>
         function hitungMCHC() {
-            const kadarHemoglobin = parseInt(document.getElementById('kadarHemoglobin').value);
+            const kadarHemoglobin = parseFloat(document.getElementById('kadarHemoglobin').value);
             const nilaiHematokrit = parseFloat(document.getElementById('nilaiHematokrit').value);
 
             if (isNaN(kadarHemoglobin) || isNaN(nilaiHematokrit)) {
